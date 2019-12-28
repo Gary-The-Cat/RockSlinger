@@ -110,6 +110,7 @@
     <Compile Include="CollisionData\Shapes\Polygon.cs" />
     <Compile Include="CollisionData\Shapes\Rectangle.cs" />
     <Compile Include="Configuration.cs" />
+    <Compile Include="CrateTools\CrateManager.cs" />
     <Compile Include="ExtensionMethods\RenderWindowExceptions.cs" />
     <Compile Include="ExtensionMethods\Vector2fExtensions.cs" />
     <Compile Include="ExtensionMethods\MathExtensions.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screens\GameScreen.cs" />
+    <Compile Include="Screens\MainGameScreen.cs" />
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Screens\ScreenManager.cs" />
     <Compile Include="Text\FontText.cs" />

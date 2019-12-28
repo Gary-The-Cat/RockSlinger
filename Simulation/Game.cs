@@ -27,7 +27,7 @@ namespace CarSimulation
 
             screenManager = new ScreenManager(window);
 
-            var gameScreen = new GameScreen(window, Configuration.SinglePlayer);
+            var gameScreen = new MainGameScreen(window, Configuration.SinglePlayer);
             screenManager.AddScreen(gameScreen);
 
             clock = new Clock();

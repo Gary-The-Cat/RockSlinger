@@ -47,9 +47,7 @@ namespace CarSimulation.Screens
 
         private int count = 0;
         public void Draw(float deltaT)
-        {
-            window.Clear(Configuration.Background);
-            
+        {            
             foreach (var screen in screens.Where(s => s.IsDraw))
             {
                 window.SetView(screen.Camera.GetView());

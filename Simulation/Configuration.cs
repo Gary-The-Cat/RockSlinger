@@ -20,7 +20,7 @@ namespace CarSimulation
         
         public static bool IsDebugFrameTime = true;
         public static float DebugFrameTime = (1 / 60f);
-        public static float Scale = 2f;
+        public static float Scale = 1f;
         public static uint Height = (uint)(1080 * Scale);
         public static uint Width = (uint)(1920 * Scale);
 
