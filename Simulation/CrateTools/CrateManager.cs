@@ -12,11 +12,11 @@ namespace Arkanoid_SFML.CrateTools
         public readonly int VerticalPixelOffset = 100;
         public int CrateSize = 128;
 
-        private bool[,] crates;
+        private Crate[,] crates;
 
         public CrateManager()
         {
-            crates = new bool[15, 8];
+            crates = new Crate[15, 8];
         }
 
         public Vector2i GetCrateIndexFromPosition(Vector2f position)
@@ -35,26 +35,26 @@ namespace Arkanoid_SFML.CrateTools
             return new Vector2f(x, y);
         }
 
-        public IEnumerable<Vector2f> GetCratePositions()
+        public Crate[,] GetCrates()
         {
-            for(int x = 0; x < crates.GetLength(0); x++)
-            {
-                for (int y = 0; y < crates.GetLength(1); y++)
-                {
-                    if(crates[x, y])
-                    {
-                        yield return GetCrateCentreFromIndex(new Vector2i(x, y));
-                    }
-                }
-            }
-
-            yield break;
+            return crates;
         }
 
         public void AddCrate(Vector2f cratePosition)
         {
             var crateIndex = GetCrateIndexFromPosition(cratePosition);
-            crates[crateIndex.X, crateIndex.Y] = true;
+            if(crates[crateIndex.X, crateIndex.Y] == null)
+            {
+                crates[crateIndex.X, crateIndex.Y] = new Crate() { CrateType = CrateType.Full, IsCrate = true, Centroid = GetCrateCentreFromIndex(crateIndex) };
+            }
+            else
+            {
+                crates[crateIndex.X, crateIndex.Y].CrateType++;
+                if ((int)crates[crateIndex.X, crateIndex.Y].CrateType > 2)
+                {
+                    crates[crateIndex.X, crateIndex.Y].CrateType = CrateType.Full;
+                }
+            }
         }
     }
 }

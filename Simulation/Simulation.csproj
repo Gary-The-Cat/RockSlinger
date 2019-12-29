@@ -110,6 +110,7 @@
     <Compile Include="CollisionData\Shapes\Polygon.cs" />
     <Compile Include="CollisionData\Shapes\Rectangle.cs" />
     <Compile Include="Configuration.cs" />
+    <Compile Include="CrateTools\Crate.cs" />
     <Compile Include="CrateTools\CrateManager.cs" />
     <Compile Include="ExtensionMethods\RenderWindowExceptions.cs" />
     <Compile Include="ExtensionMethods\Vector2fExtensions.cs" />

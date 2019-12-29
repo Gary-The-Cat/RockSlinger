@@ -16,6 +16,8 @@ namespace Arkanoid_SFML.Screens
         RectangleShape potentialCratePosition;
         Texture potentialCrateTexture;
         Texture crateTexture;
+        Texture crateBrokenTexture;
+        Texture crateTattersTexture;
 
         public MainGameScreen(RenderWindow window, FloatRect configuration) : base(window, configuration)
         {
@@ -24,6 +26,8 @@ namespace Arkanoid_SFML.Screens
             crateManager = new CrateManager();
             potentialCrateTexture = new Texture(new Image("PotentialCrate.png"));
             crateTexture = new Texture(new Image("Crate.png"));
+            crateBrokenTexture = new Texture(new Image("CrateBroken.png"));
+            crateTattersTexture = new Texture(new Image("CrateVeryBroken.png"));
         }
 
         public override void Update(float deltaT)
@@ -55,12 +59,17 @@ namespace Arkanoid_SFML.Screens
                 texture.Draw(potentialCratePosition);
             }
 
-            foreach(var cratePosition in crateManager.GetCratePositions())
+            foreach(var cratePosition in crateManager.GetCrates())
             {
+                if(cratePosition == null)
+                {
+                    continue;
+                }
+
                 var crate = new RectangleShape(new Vector2f(128, 128));
-                crate.Texture = crateTexture;
+                crate.Texture = GetCrateTexture(cratePosition.CrateType);
                 crate.Origin = new Vector2f(64, 64);
-                crate.Position = cratePosition;
+                crate.Position = cratePosition.Centroid;
                 texture.Draw(crate);
             }
 
@@ -68,6 +77,24 @@ namespace Arkanoid_SFML.Screens
             var sprite = new Sprite(texture.Texture);
 
             window.Draw(sprite);
+        }
+
+        private Texture GetCrateTexture(CrateType crateType)
+        {
+            if (crateType == CrateType.Full)
+            {
+                return crateTexture;
+            }
+            if (crateType == CrateType.Broken)
+            {
+                return crateBrokenTexture;
+            }
+            if(crateType == CrateType.Tatters)
+            {
+                return crateTattersTexture;
+            }
+
+            return crateTexture;
         }
 
         private void MouseButtonPressed(object sender, MouseButtonEventArgs e)
